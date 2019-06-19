@@ -4,6 +4,8 @@ This repo contains the TIR2Lab model and weights presented in the PBVS2018 paper
 
 A. Berg, J. Ahlberg, and M. Felsberg, Generating Visible Spectrum Images from Thermal Infrared, 2018 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), (2018)
 
+OBS! This is the same repo that previously resided here: https://gitlab.ida.liu.se/amabe60/PBVS2018 
+
 ## Load the model
 Example of how to load the model and pre-trained weights in Keras 2.0:
 
