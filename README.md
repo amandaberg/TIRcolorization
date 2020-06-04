@@ -16,7 +16,16 @@ transformer = model_from_json(json_string)
 transformer.load_weights('TIR2Lab_weights.h5')
 ```
 
-Please note that input images should be in range [0,1] and that the output images will be in a normalized Lab color space. Use the following function (postprocess_tir2lab_results) to convert an output image from the nomalized Lab color space to RGB:
+I preprocessed the input images and stored them as .npy files to speed up the processing time. The multiplication by 16 for nTrainFiles is simply because each .npy file contained 16 images. If you want to do the same, you can use the functions generate_image_data and generate_image_lab_data in utils.py like this in a loop and then just save them to .npy's:
+
+```
+LWIRimages = generate_image_data(LWIRtrainDataFiles[step*batch_size:(step+1)*batch_size], scaleFactor, 640, 512, 
+                                 normalize_to_interval_01 = False, reduce_to_one_channel = True)
+RGBimages = generate_image_lab_data(RGBtrainDataFiles[step*batch_size:(step+1)*batch_size], scaleFactor, 640, 512, 
+                                    normalize_to_interval_01 = False, quantizeAccToZhang2016 = False)
+```						
+
+Please note that the output images will be in a normalized Lab color space. Use the following function (postprocess_tir2lab_results) to convert an output image from the nomalized Lab color space to RGB:
 
 ```
 import numpy as np
